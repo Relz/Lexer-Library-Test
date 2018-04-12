@@ -1,0 +1,57 @@
+INCLUDE_DIRECTORIES(${gtest_SOURCE_DIR}/include ${gtest_SOURCE_DIR})
+
+INCLUDE_DIRECTORIES(${CMAKE_SOURCE_DIR}/LexerProject)
+
+ADD_EXECUTABLE(LexerTest
+	TestHelper.cpp
+	TestHelper.h
+	PlusTokenTest.cpp
+	MinusTokenTest.cpp
+	MultiplyTokenTest.cpp
+	DivisionTokenTest.cpp
+	AssignmentTokenTest.cpp
+	PlusAssignmentTokenTest.cpp
+	MinusAssignmentTokenTest.cpp
+	MultiplyAssignmentTokenTest.cpp
+	DivisionAssignmentTokenTest.cpp
+	EquivalenceTokenTest.cpp
+	NotEquivalenceTokenTest.cpp
+	MoreOrEquivalenceTokenTest.cpp
+	LessOrEquivalenceTokenTest.cpp
+	MoreTokenTest.cpp
+	LessTokenTest.cpp
+	ClassTokenTest.cpp
+	ExtendsTokenTest.cpp
+	ImplementsTokenTest.cpp
+	ConstructorTokenTest.cpp
+	NotInitializedTokenTest.cpp
+	PrivateTokenTest.cpp
+	PublicTokenTest.cpp
+	GetTokenTest.cpp
+	SetTokenTest.cpp
+	ForTokenTest.cpp
+	WhileTokenTest.cpp
+	DoTokenTest.cpp
+	ReturnTokenTest.cpp
+	IfTokenTest.cpp
+	ElseTokenTest.cpp
+	IntegerTokenTest.cpp
+	FloatTokenTest.cpp
+	ExponentialTokenTest.cpp
+	ColonTokenTest.cpp
+	CommaTokenTest.cpp
+	DotTokenTest.cpp
+	SemicolonTokenTest.cpp
+	LeftSquareBracketTokenTest.cpp
+	RightSquareBracketTokenTest.cpp
+	LeftRoundBracketTokenTest.cpp
+	RightRoundBracketTokenTest.cpp
+	LeftCurlyBracketTokenTest.cpp
+	RightCurlyBracketTokenTest.cpp
+	TypeTokenTest.cpp
+	IdentifierTokenTest.cpp
+	StringLiteralTokenTest.cpp
+	CharacterLiteralTokenTest.cpp)
+
+INCLUDE_DIRECTORIES(${CMAKE_SOURCE_DIR}/LexerLibrary)
+TARGET_LINK_LIBRARIES(LexerTest gtest gtest_main LexerLibrary)
