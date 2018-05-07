@@ -7,92 +7,92 @@ using namespace std;
 TEST(not_initialized_token, determining_if_stay_alone)
 {
 	ExpectTokenInformations(
-		"NULL", { TokenInformation(Token::NOT_INITIALIZED, StreamString("NULL", StreamPosition())) });
+		L"NULL", { TokenInformation(Token::NOT_INITIALIZED, StreamString(L"NULL", StreamPosition())) });
 }
 
 TEST(not_initialized_token, determining_if_stay_between_delimiters)
 {
 	ExpectTokenInformations(
-		" NULL ", { TokenInformation(Token::NOT_INITIALIZED, StreamString("NULL", StreamPosition(1, 2))) });
+		L" NULL ", { TokenInformation(Token::NOT_INITIALIZED, StreamString(L"NULL", StreamPosition(1, 2))) });
 	ExpectTokenInformations(
-		";NULL;",
-		{ TokenInformation(Token::SEMICOLON, StreamString(";", StreamPosition())),
-		  TokenInformation(Token::NOT_INITIALIZED, StreamString("NULL", StreamPosition(1, 2))),
-		  TokenInformation(Token::SEMICOLON, StreamString(";", StreamPosition(1, 6))) });
+		L";NULL;",
+		{ TokenInformation(Token::SEMICOLON, StreamString(L";", StreamPosition())),
+		  TokenInformation(Token::NOT_INITIALIZED, StreamString(L"NULL", StreamPosition(1, 2))),
+		  TokenInformation(Token::SEMICOLON, StreamString(L";", StreamPosition(1, 6))) });
 }
 
 TEST(not_initialized_token, determining_if_stay_near_delimiter)
 {
 	ExpectTokenInformations(
-		"NULL;",
-		{ TokenInformation(Token::NOT_INITIALIZED, StreamString("NULL", StreamPosition())),
-		  TokenInformation(Token::SEMICOLON, StreamString(";", StreamPosition(1, 5))) });
+		L"NULL;",
+		{ TokenInformation(Token::NOT_INITIALIZED, StreamString(L"NULL", StreamPosition())),
+		  TokenInformation(Token::SEMICOLON, StreamString(L";", StreamPosition(1, 5))) });
 	ExpectTokenInformations(
-		";NULL",
-		{ TokenInformation(Token::SEMICOLON, StreamString(";", StreamPosition())),
-		  TokenInformation(Token::NOT_INITIALIZED, StreamString("NULL", StreamPosition(1, 2))) });
+		L";NULL",
+		{ TokenInformation(Token::SEMICOLON, StreamString(L";", StreamPosition())),
+		  TokenInformation(Token::NOT_INITIALIZED, StreamString(L"NULL", StreamPosition(1, 2))) });
 }
 
 TEST(not_initialized_token, not_determining_if_stay_between_numbers)
 {
-	ExpectTokenInformations("1NULL1", { TokenInformation(Token::UNKNOWN, StreamString("1NULL1", StreamPosition())) });
+	ExpectTokenInformations(L"1NULL1", { TokenInformation(Token::UNKNOWN, StreamString(L"1NULL1", StreamPosition())) });
 	ExpectTokenInformations(
-		"1NULL1.1",
-		{ TokenInformation(Token::UNKNOWN, StreamString("1NULL1", StreamPosition())),
-		  TokenInformation(Token::DOT, StreamString(".", StreamPosition(1, 7))),
-		  TokenInformation(Token::INTEGER, StreamString("1", StreamPosition(1, 8))) });
+		L"1NULL1.1",
+		{ TokenInformation(Token::UNKNOWN, StreamString(L"1NULL1", StreamPosition())),
+		  TokenInformation(Token::DOT, StreamString(L".", StreamPosition(1, 7))),
+		  TokenInformation(Token::INTEGER, StreamString(L"1", StreamPosition(1, 8))) });
 	ExpectTokenInformations(
-		"1.1NULL1", { TokenInformation(Token::UNKNOWN, StreamString("1.1NULL1", StreamPosition())) });
+		L"1.1NULL1", { TokenInformation(Token::UNKNOWN, StreamString(L"1.1NULL1", StreamPosition())) });
 	ExpectTokenInformations(
-		"1.1NULL1.1",
-		{ TokenInformation(Token::UNKNOWN, StreamString("1.1NULL1", StreamPosition())),
-		  TokenInformation(Token::DOT, StreamString(".", StreamPosition(1, 9))),
-		  TokenInformation(Token::INTEGER, StreamString("1", StreamPosition(1, 10))) });
+		L"1.1NULL1.1",
+		{ TokenInformation(Token::UNKNOWN, StreamString(L"1.1NULL1", StreamPosition())),
+		  TokenInformation(Token::DOT, StreamString(L".", StreamPosition(1, 9))),
+		  TokenInformation(Token::INTEGER, StreamString(L"1", StreamPosition(1, 10))) });
 	ExpectTokenInformations(
-		"1_E+1NULL1", { TokenInformation(Token::UNKNOWN, StreamString("1_E+1NULL1", StreamPosition())) });
+		L"1_E+1NULL1", { TokenInformation(Token::UNKNOWN, StreamString(L"1_E+1NULL1", StreamPosition())) });
 	ExpectTokenInformations(
-		"1NULL1_E+1",
-		{ TokenInformation(Token::UNKNOWN, StreamString("1NULL1_E", StreamPosition())),
-		  TokenInformation(Token::PLUS, StreamString("+", StreamPosition(1, 9))),
-		  TokenInformation(Token::INTEGER, StreamString("1", StreamPosition(1, 10))) });
+		L"1NULL1_E+1",
+		{ TokenInformation(Token::UNKNOWN, StreamString(L"1NULL1_E", StreamPosition())),
+		  TokenInformation(Token::PLUS, StreamString(L"+", StreamPosition(1, 9))),
+		  TokenInformation(Token::INTEGER, StreamString(L"1", StreamPosition(1, 10))) });
 }
 
 TEST(not_initialized_token, not_determining_if_part_of_string_literal)
 {
 	ExpectTokenInformations(
-		R"("NULL")", { TokenInformation(Token::STRING_LITERAL, StreamString(R"("NULL")", StreamPosition())) });
+		LR"("NULL")", { TokenInformation(Token::STRING_LITERAL, StreamString(LR"("NULL")", StreamPosition())) });
 	ExpectTokenInformations(
-		R"(" NULL ")", { TokenInformation(Token::STRING_LITERAL, StreamString(R"(" NULL ")", StreamPosition())) });
+		LR"(" NULL ")", { TokenInformation(Token::STRING_LITERAL, StreamString(LR"(" NULL ")", StreamPosition())) });
 	ExpectTokenInformations(
-		R"("1NULL1")", { TokenInformation(Token::STRING_LITERAL, StreamString(R"("1NULL1")", StreamPosition())) });
+		LR"("1NULL1")", { TokenInformation(Token::STRING_LITERAL, StreamString(LR"("1NULL1")", StreamPosition())) });
 	ExpectTokenInformations(
-		R"(";NULL;")", { TokenInformation(Token::STRING_LITERAL, StreamString(R"(";NULL;")", StreamPosition())) });
+		LR"(";NULL;")", { TokenInformation(Token::STRING_LITERAL, StreamString(LR"(";NULL;")", StreamPosition())) });
 }
 
 TEST(not_initialized_token, not_determining_if_part_of_comment)
 {
 	ExpectTokenInformations(
-		"//NULL", { TokenInformation(Token::LINE_COMMENT, StreamString("//NULL", StreamPosition())) });
+		L"//NULL", { TokenInformation(Token::LINE_COMMENT, StreamString(L"//NULL", StreamPosition())) });
 	ExpectTokenInformations(
-		"// NULL ", { TokenInformation(Token::LINE_COMMENT, StreamString("// NULL ", StreamPosition())) });
+		L"// NULL ", { TokenInformation(Token::LINE_COMMENT, StreamString(L"// NULL ", StreamPosition())) });
 	ExpectTokenInformations(
-		"//1NULL1", { TokenInformation(Token::LINE_COMMENT, StreamString("//1NULL1", StreamPosition())) });
+		L"//1NULL1", { TokenInformation(Token::LINE_COMMENT, StreamString(L"//1NULL1", StreamPosition())) });
 	ExpectTokenInformations(
-		"//;NULL;", { TokenInformation(Token::LINE_COMMENT, StreamString("//;NULL;", StreamPosition())) });
+		L"//;NULL;", { TokenInformation(Token::LINE_COMMENT, StreamString(L"//;NULL;", StreamPosition())) });
 	ExpectTokenInformations(
-		"/*NULL*/", { TokenInformation(Token::BLOCK_COMMENT, StreamString("/*NULL*/", StreamPosition())) });
+		L"/*NULL*/", { TokenInformation(Token::BLOCK_COMMENT, StreamString(L"/*NULL*/", StreamPosition())) });
 	ExpectTokenInformations(
-		"/* NULL */", { TokenInformation(Token::BLOCK_COMMENT, StreamString("/* NULL */", StreamPosition())) });
+		L"/* NULL */", { TokenInformation(Token::BLOCK_COMMENT, StreamString(L"/* NULL */", StreamPosition())) });
 	ExpectTokenInformations(
-		"/*1NULL1*/", { TokenInformation(Token::BLOCK_COMMENT, StreamString("/*1NULL1*/", StreamPosition())) });
+		L"/*1NULL1*/", { TokenInformation(Token::BLOCK_COMMENT, StreamString(L"/*1NULL1*/", StreamPosition())) });
 	ExpectTokenInformations(
-		"/*;NULL;*/", { TokenInformation(Token::BLOCK_COMMENT, StreamString("/*;NULL;*/", StreamPosition())) });
+		L"/*;NULL;*/", { TokenInformation(Token::BLOCK_COMMENT, StreamString(L"/*;NULL;*/", StreamPosition())) });
 	ExpectTokenInformations(
-		"/*NULL", { TokenInformation(Token::BLOCK_COMMENT, StreamString("/*NULL", StreamPosition())) });
+		L"/*NULL", { TokenInformation(Token::BLOCK_COMMENT, StreamString(L"/*NULL", StreamPosition())) });
 	ExpectTokenInformations(
-		"/* NULL ", { TokenInformation(Token::BLOCK_COMMENT, StreamString("/* NULL ", StreamPosition())) });
+		L"/* NULL ", { TokenInformation(Token::BLOCK_COMMENT, StreamString(L"/* NULL ", StreamPosition())) });
 	ExpectTokenInformations(
-		"/*1NULL1", { TokenInformation(Token::BLOCK_COMMENT, StreamString("/*1NULL1", StreamPosition())) });
+		L"/*1NULL1", { TokenInformation(Token::BLOCK_COMMENT, StreamString(L"/*1NULL1", StreamPosition())) });
 	ExpectTokenInformations(
-		"/*;NULL;", { TokenInformation(Token::BLOCK_COMMENT, StreamString("/*;NULL;", StreamPosition())) });
+		L"/*;NULL;", { TokenInformation(Token::BLOCK_COMMENT, StreamString(L"/*;NULL;", StreamPosition())) });
 }
