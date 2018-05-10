@@ -6,121 +6,117 @@ using namespace std;
 
 TEST(block_comment_token, determining_if_stay_alone)
 {
-	ExpectTokenInformations(L"/*", { TokenInformation(Token::BLOCK_COMMENT, StreamString(L"/*", StreamPosition())) });
-	ExpectTokenInformations(L"/**/", { TokenInformation(Token::BLOCK_COMMENT, StreamString(L"/**/", StreamPosition())) });
+	ExpectTokenInformations("/*", { TokenInformation(Token::BLOCK_COMMENT, StreamString("/*", StreamPosition())) });
+	ExpectTokenInformations("/**/", { TokenInformation(Token::BLOCK_COMMENT, StreamString("/**/", StreamPosition())) });
 }
 
 TEST(block_comment_token, determining_if_stay_between_delimiters)
 {
 	ExpectTokenInformations(
-		L" /* ", { TokenInformation(Token::BLOCK_COMMENT, StreamString(L"/* ", StreamPosition(1, 2))) });
+		" /* ", { TokenInformation(Token::BLOCK_COMMENT, StreamString("/* ", StreamPosition(1, 2))) });
 	ExpectTokenInformations(
-		L";/*;",
-		{ TokenInformation(Token::SEMICOLON, StreamString(L";", StreamPosition())),
-		  TokenInformation(Token::BLOCK_COMMENT, StreamString(L"/*;", StreamPosition(1, 2))) });
+		";/*;",
+		{ TokenInformation(Token::SEMICOLON, StreamString(";", StreamPosition())),
+		  TokenInformation(Token::BLOCK_COMMENT, StreamString("/*;", StreamPosition(1, 2))) });
 }
 
 TEST(block_comment_token, determining_if_stay_near_delimiter)
 {
 	ExpectTokenInformations(
-		L"/*;",
-		{ TokenInformation(Token::BLOCK_COMMENT, StreamString(L"/*;", StreamPosition())) });
+		"/*;",
+		{ TokenInformation(Token::BLOCK_COMMENT, StreamString("/*;", StreamPosition())) });
 	ExpectTokenInformations(
-		L";/*",
-		{ TokenInformation(Token::SEMICOLON, StreamString(L";", StreamPosition())),
-		  TokenInformation(Token::BLOCK_COMMENT, StreamString(L"/*", StreamPosition(1, 2))) });
+		";/*",
+		{ TokenInformation(Token::SEMICOLON, StreamString(";", StreamPosition())),
+		  TokenInformation(Token::BLOCK_COMMENT, StreamString("/*", StreamPosition(1, 2))) });
 }
 
 TEST(block_comment_token, determining_if_stay_between_numbers)
 {
 	ExpectTokenInformations(
-		L"1/*1",
-		{ TokenInformation(Token::INTEGER, StreamString(L"1", StreamPosition())),
-		  TokenInformation(Token::BLOCK_COMMENT, StreamString(L"/*1", StreamPosition(1, 2))) });
+		"1/*1",
+		{ TokenInformation(Token::INTEGER, StreamString("1", StreamPosition())),
+		  TokenInformation(Token::BLOCK_COMMENT, StreamString("/*1", StreamPosition(1, 2))) });
 	ExpectTokenInformations(
-		L"1/*1.1",
-		{ TokenInformation(Token::INTEGER, StreamString(L"1", StreamPosition())),
-		  TokenInformation(Token::BLOCK_COMMENT, StreamString(L"/*1.1", StreamPosition(1, 2))) });
+		"1/*1.1",
+		{ TokenInformation(Token::INTEGER, StreamString("1", StreamPosition())),
+		  TokenInformation(Token::BLOCK_COMMENT, StreamString("/*1.1", StreamPosition(1, 2))) });
 	ExpectTokenInformations(
-		L"1.1/*1",
-		{ TokenInformation(Token::FLOAT, StreamString(L"1.1", StreamPosition())),
-		  TokenInformation(Token::BLOCK_COMMENT, StreamString(L"/*1", StreamPosition(1, 4))) });
+		"1.1/*1",
+		{ TokenInformation(Token::FLOAT, StreamString("1.1", StreamPosition())),
+		  TokenInformation(Token::BLOCK_COMMENT, StreamString("/*1", StreamPosition(1, 4))) });
 	ExpectTokenInformations(
-		L"1.1/*1.1",
-		{ TokenInformation(Token::FLOAT, StreamString(L"1.1", StreamPosition())),
-		  TokenInformation(Token::BLOCK_COMMENT, StreamString(L"/*1.1", StreamPosition(1, 4))) });
+		"1.1/*1.1",
+		{ TokenInformation(Token::FLOAT, StreamString("1.1", StreamPosition())),
+		  TokenInformation(Token::BLOCK_COMMENT, StreamString("/*1.1", StreamPosition(1, 4))) });
 	ExpectTokenInformations(
-		L"1_E+1/*1",
-		{ TokenInformation(Token::EXPONENTIAL, StreamString(L"1_E+1", StreamPosition())),
-		  TokenInformation(Token::BLOCK_COMMENT, StreamString(L"/*1", StreamPosition(1, 6))) });
+		"1_E+1/*1",
+		{ TokenInformation(Token::EXPONENTIAL, StreamString("1_E+1", StreamPosition())),
+		  TokenInformation(Token::BLOCK_COMMENT, StreamString("/*1", StreamPosition(1, 6))) });
 	ExpectTokenInformations(
-		L"1/*1_E+1",
-		{ TokenInformation(Token::INTEGER, StreamString(L"1", StreamPosition())),
-		  TokenInformation(Token::BLOCK_COMMENT, StreamString(L"/*1_E+1", StreamPosition(1, 2))) });
+		"1/*1_E+1",
+		{ TokenInformation(Token::INTEGER, StreamString("1", StreamPosition())),
+		  TokenInformation(Token::BLOCK_COMMENT, StreamString("/*1_E+1", StreamPosition(1, 2))) });
 }
 
 TEST(block_comment_token, not_determining_if_part_of_string_literal)
 {
 	ExpectTokenInformations(
-		LR"("/*")", { TokenInformation(Token::STRING_LITERAL, StreamString(LR"("/*")", StreamPosition())) });
+		R"("/*")", { TokenInformation(Token::STRING_LITERAL, StreamString(R"("/*")", StreamPosition())) });
 	ExpectTokenInformations(
-		LR"(" /* ")", { TokenInformation(Token::STRING_LITERAL, StreamString(LR"(" /* ")", StreamPosition())) });
+		R"(" /* ")", { TokenInformation(Token::STRING_LITERAL, StreamString(R"(" /* ")", StreamPosition())) });
 	ExpectTokenInformations(
-		LR"("1/*1")", { TokenInformation(Token::STRING_LITERAL, StreamString(LR"("1/*1")", StreamPosition())) });
+		R"("1/*1")", { TokenInformation(Token::STRING_LITERAL, StreamString(R"("1/*1")", StreamPosition())) });
 	ExpectTokenInformations(
-		LR"(";/*;")", { TokenInformation(Token::STRING_LITERAL, StreamString(LR"(";/*;")", StreamPosition())) });
+		R"(";/*;")", { TokenInformation(Token::STRING_LITERAL, StreamString(R"(";/*;")", StreamPosition())) });
 	ExpectTokenInformations(
-		LR"("/**/")", { TokenInformation(Token::STRING_LITERAL, StreamString(LR"("/**/")", StreamPosition())) });
+		R"("/**/")", { TokenInformation(Token::STRING_LITERAL, StreamString(R"("/**/")", StreamPosition())) });
 }
 
 TEST(block_comment_token, not_determining_if_part_of_comment)
 {
 	ExpectTokenInformations(
-		L"///*", { TokenInformation(Token::LINE_COMMENT, StreamString(L"///*", StreamPosition())) });
+		"///*", { TokenInformation(Token::LINE_COMMENT, StreamString("///*", StreamPosition())) });
 	ExpectTokenInformations(
-		L"// /* ", { TokenInformation(Token::LINE_COMMENT, StreamString(L"// /* ", StreamPosition())) });
+		"// /* ", { TokenInformation(Token::LINE_COMMENT, StreamString("// /* ", StreamPosition())) });
 	ExpectTokenInformations(
-		L"//1/*1", { TokenInformation(Token::LINE_COMMENT, StreamString(L"//1/*1", StreamPosition())) });
+		"//1/*1", { TokenInformation(Token::LINE_COMMENT, StreamString("//1/*1", StreamPosition())) });
 	ExpectTokenInformations(
-		L"//;/*;", { TokenInformation(Token::LINE_COMMENT, StreamString(L"//;/*;", StreamPosition())) });
+		"//;/*;", { TokenInformation(Token::LINE_COMMENT, StreamString("//;/*;", StreamPosition())) });
 	ExpectTokenInformations(
-		L"/*/**/", { TokenInformation(Token::BLOCK_COMMENT, StreamString(L"/*/**/", StreamPosition())) });
+		"/*/**/", { TokenInformation(Token::BLOCK_COMMENT, StreamString("/*/**/", StreamPosition())) });
 	ExpectTokenInformations(
-		L"/* /* */", { TokenInformation(Token::BLOCK_COMMENT, StreamString(L"/* /* */", StreamPosition())) });
+		"/* /* */", { TokenInformation(Token::BLOCK_COMMENT, StreamString("/* /* */", StreamPosition())) });
 	ExpectTokenInformations(
-		L"/*1/*1*/", { TokenInformation(Token::BLOCK_COMMENT, StreamString(L"/*1/*1*/", StreamPosition())) });
+		"/*1/*1*/", { TokenInformation(Token::BLOCK_COMMENT, StreamString("/*1/*1*/", StreamPosition())) });
 	ExpectTokenInformations(
-		L"/*;/*;*/", { TokenInformation(Token::BLOCK_COMMENT, StreamString(L"/*;/*;*/", StreamPosition())) });
+		"/*;/*;*/", { TokenInformation(Token::BLOCK_COMMENT, StreamString("/*;/*;*/", StreamPosition())) });
 	ExpectTokenInformations(
-		L"/*/*", { TokenInformation(Token::BLOCK_COMMENT, StreamString(L"/*/*", StreamPosition())) });
+		"/*/*", { TokenInformation(Token::BLOCK_COMMENT, StreamString("/*/*", StreamPosition())) });
 	ExpectTokenInformations(
-		L"/* /* ", { TokenInformation(Token::BLOCK_COMMENT, StreamString(L"/* /* ", StreamPosition())) });
+		"/* /* ", { TokenInformation(Token::BLOCK_COMMENT, StreamString("/* /* ", StreamPosition())) });
 	ExpectTokenInformations(
-		L"/*1/*1", { TokenInformation(Token::BLOCK_COMMENT, StreamString(L"/*1/*1", StreamPosition())) });
+		"/*1/*1", { TokenInformation(Token::BLOCK_COMMENT, StreamString("/*1/*1", StreamPosition())) });
 	ExpectTokenInformations(
-		L"/*;/*;", { TokenInformation(Token::BLOCK_COMMENT, StreamString(L"/*;/*;", StreamPosition())) });
+		"/*;/*;", { TokenInformation(Token::BLOCK_COMMENT, StreamString("/*;/*;", StreamPosition())) });
 }
 
 TEST(block_comment_token, does_not_end_with_end_of_line)
 {
 	ExpectTokenInformations(
-		L"/* comment\nidentifier // long comment",
+		"/* comment\nidentifier // long comment",
 		{ TokenInformation(
-			Token::BLOCK_COMMENT, StreamString(L"/* comment\nidentifier // long comment", StreamPosition())) });
+			Token::BLOCK_COMMENT, StreamString("/* comment\nidentifier // long comment", StreamPosition())) });
 	ExpectTokenInformations(
-		L"/* comment\nidentifier // long comment*/",
+		"/* comment\nidentifier // long comment*/",
 		{ TokenInformation(
-			Token::BLOCK_COMMENT, StreamString(L"/* comment\nidentifier // long comment*/", StreamPosition())) });
+			Token::BLOCK_COMMENT, StreamString("/* comment\nidentifier // long comment*/", StreamPosition())) });
 	ExpectTokenInformations(
-		L"/* comment\nidentifier // long comment\n\t*/",
+		"/* comment\nidentifier // long comment\n\t*/",
 		{ TokenInformation(
-			Token::BLOCK_COMMENT, StreamString(L"/* comment\nidentifier // long comment\n\t*/", StreamPosition())) });
+			Token::BLOCK_COMMENT, StreamString("/* comment\nidentifier // long comment\n\t*/", StreamPosition())) });
 	ExpectTokenInformations(
-		L"/*comment\nidentifier // long comment*/",
+		"/*comment\nidentifier // long comment*/",
 		{ TokenInformation(
-			Token::BLOCK_COMMENT, StreamString(L"/*comment\nidentifier // long comment*/", StreamPosition())) });
-	ExpectTokenInformations(
-		L"/* кириллица\nиногда // удивляет*/",
-		{ TokenInformation(
-			Token::BLOCK_COMMENT, StreamString(L"/* кириллица\nиногда // удивляет*/", StreamPosition())) });
+			Token::BLOCK_COMMENT, StreamString("/*comment\nidentifier // long comment*/", StreamPosition())) });
 }

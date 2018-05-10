@@ -6,6 +6,6 @@
 
 class TokenInformation;
 
-void ExpectTokenInformations(std::wstring const & str, std::vector<TokenInformation> const & expectedTokenInformations);
+void ExpectTokenInformations(std::string const & str, std::vector<TokenInformation> const & expectedTokenInformations);
 
 #endif //PROJECT_TESTHELPER_H

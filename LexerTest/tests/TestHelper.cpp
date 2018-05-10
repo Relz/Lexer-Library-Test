@@ -4,9 +4,9 @@
 #include "gtest/gtest.h"
 #include <sstream>
 
-void ExpectTokenInformations(std::wstring const & str, std::vector<TokenInformation> const & expectedTokenInformations)
+void ExpectTokenInformations(std::string const & str, std::vector<TokenInformation> const & expectedTokenInformations)
 {
-	std::wstringstream stringStream(str);
+	std::stringstream stringStream(str);
 	Lexer lexer(stringStream);
 	size_t i = 0;
 	TokenInformation tokenInformation;
