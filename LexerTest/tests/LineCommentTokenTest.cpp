@@ -1,5 +1,5 @@
-#include "Token/TokenInformation/TokenInformation.h"
 #include "TestHelper.h"
+#include "TokenLibrary/TokenInformation/TokenInformation.h"
 #include "gtest/gtest.h"
 
 using namespace std;
@@ -11,7 +11,8 @@ TEST(line_comment_token, determining_if_stay_alone)
 
 TEST(line_comment_token, determining_if_stay_between_delimiters)
 {
-	ExpectTokenInformations(" // ", { TokenInformation(Token::LINE_COMMENT, StreamString("// ", StreamPosition(1, 2))) });
+	ExpectTokenInformations(
+		" // ", { TokenInformation(Token::LINE_COMMENT, StreamString("// ", StreamPosition(1, 2))) });
 	ExpectTokenInformations(
 		";//;",
 		{ TokenInformation(Token::SEMICOLON, StreamString(";", StreamPosition())),
@@ -20,9 +21,7 @@ TEST(line_comment_token, determining_if_stay_between_delimiters)
 
 TEST(line_comment_token, determining_if_stay_near_delimiter)
 {
-	ExpectTokenInformations(
-		"//;",
-		{ TokenInformation(Token::LINE_COMMENT, StreamString("//;", StreamPosition())) });
+	ExpectTokenInformations("//;", { TokenInformation(Token::LINE_COMMENT, StreamString("//;", StreamPosition())) });
 	ExpectTokenInformations(
 		";//",
 		{ TokenInformation(Token::SEMICOLON, StreamString(";", StreamPosition())),
@@ -73,8 +72,7 @@ TEST(line_comment_token, not_determining_if_part_of_string_literal)
 
 TEST(line_comment_token, not_determining_if_part_of_comment)
 {
-	ExpectTokenInformations(
-		"////", { TokenInformation(Token::LINE_COMMENT, StreamString("////", StreamPosition())) });
+	ExpectTokenInformations("////", { TokenInformation(Token::LINE_COMMENT, StreamString("////", StreamPosition())) });
 	ExpectTokenInformations(
 		"// // ", { TokenInformation(Token::LINE_COMMENT, StreamString("// // ", StreamPosition())) });
 	ExpectTokenInformations(
@@ -89,8 +87,7 @@ TEST(line_comment_token, not_determining_if_part_of_comment)
 		"/*1//1*/", { TokenInformation(Token::BLOCK_COMMENT, StreamString("/*1//1*/", StreamPosition())) });
 	ExpectTokenInformations(
 		"/*;//;*/", { TokenInformation(Token::BLOCK_COMMENT, StreamString("/*;//;*/", StreamPosition())) });
-	ExpectTokenInformations(
-		"/*//", { TokenInformation(Token::BLOCK_COMMENT, StreamString("/*//", StreamPosition())) });
+	ExpectTokenInformations("/*//", { TokenInformation(Token::BLOCK_COMMENT, StreamString("/*//", StreamPosition())) });
 	ExpectTokenInformations(
 		"/* // ", { TokenInformation(Token::BLOCK_COMMENT, StreamString("/* // ", StreamPosition())) });
 	ExpectTokenInformations(
@@ -104,6 +101,6 @@ TEST(line_comment_token, ends_with_end_of_line)
 	ExpectTokenInformations(
 		"// comment\nidentifier // long comment",
 		{ TokenInformation(Token::LINE_COMMENT, StreamString("// comment", StreamPosition())),
-		TokenInformation(Token::IDENTIFIER, StreamString("identifier", StreamPosition(2, 1))),
-		TokenInformation(Token::LINE_COMMENT, StreamString("// long comment", StreamPosition(2, 12))) });
+		  TokenInformation(Token::IDENTIFIER, StreamString("identifier", StreamPosition(2, 1))),
+		  TokenInformation(Token::LINE_COMMENT, StreamString("// long comment", StreamPosition(2, 12))) });
 }

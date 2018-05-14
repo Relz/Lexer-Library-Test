@@ -1,5 +1,5 @@
-#include "Token/TokenInformation/TokenInformation.h"
 #include "TestHelper.h"
+#include "TokenLibrary/TokenInformation/TokenInformation.h"
 #include "gtest/gtest.h"
 
 using namespace std;
@@ -22,9 +22,7 @@ TEST(block_comment_token, determining_if_stay_between_delimiters)
 
 TEST(block_comment_token, determining_if_stay_near_delimiter)
 {
-	ExpectTokenInformations(
-		"/*;",
-		{ TokenInformation(Token::BLOCK_COMMENT, StreamString("/*;", StreamPosition())) });
+	ExpectTokenInformations("/*;", { TokenInformation(Token::BLOCK_COMMENT, StreamString("/*;", StreamPosition())) });
 	ExpectTokenInformations(
 		";/*",
 		{ TokenInformation(Token::SEMICOLON, StreamString(";", StreamPosition())),
@@ -75,8 +73,7 @@ TEST(block_comment_token, not_determining_if_part_of_string_literal)
 
 TEST(block_comment_token, not_determining_if_part_of_comment)
 {
-	ExpectTokenInformations(
-		"///*", { TokenInformation(Token::LINE_COMMENT, StreamString("///*", StreamPosition())) });
+	ExpectTokenInformations("///*", { TokenInformation(Token::LINE_COMMENT, StreamString("///*", StreamPosition())) });
 	ExpectTokenInformations(
 		"// /* ", { TokenInformation(Token::LINE_COMMENT, StreamString("// /* ", StreamPosition())) });
 	ExpectTokenInformations(
@@ -91,8 +88,7 @@ TEST(block_comment_token, not_determining_if_part_of_comment)
 		"/*1/*1*/", { TokenInformation(Token::BLOCK_COMMENT, StreamString("/*1/*1*/", StreamPosition())) });
 	ExpectTokenInformations(
 		"/*;/*;*/", { TokenInformation(Token::BLOCK_COMMENT, StreamString("/*;/*;*/", StreamPosition())) });
-	ExpectTokenInformations(
-		"/*/*", { TokenInformation(Token::BLOCK_COMMENT, StreamString("/*/*", StreamPosition())) });
+	ExpectTokenInformations("/*/*", { TokenInformation(Token::BLOCK_COMMENT, StreamString("/*/*", StreamPosition())) });
 	ExpectTokenInformations(
 		"/* /* ", { TokenInformation(Token::BLOCK_COMMENT, StreamString("/* /* ", StreamPosition())) });
 	ExpectTokenInformations(

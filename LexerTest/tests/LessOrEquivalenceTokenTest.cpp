@@ -1,5 +1,5 @@
-#include "Token/TokenInformation/TokenInformation.h"
 #include "TestHelper.h"
+#include "TokenLibrary/TokenInformation/TokenInformation.h"
 #include "gtest/gtest.h"
 
 using namespace std;

@@ -1,5 +1,5 @@
-#include "Token/TokenInformation/TokenInformation.h"
 #include "TestHelper.h"
+#include "TokenLibrary/TokenInformation/TokenInformation.h"
 #include "gtest/gtest.h"
 
 using namespace std;
@@ -25,7 +25,8 @@ TEST(float_token, determining_if_stay_between_delimiters)
 		{ TokenInformation(Token::SEMICOLON, StreamString(";", StreamPosition())),
 		  TokenInformation(Token::FLOAT, StreamString("2_1.1", StreamPosition(1, 2))),
 		  TokenInformation(Token::SEMICOLON, StreamString(";", StreamPosition(1, 7))) });
-	ExpectTokenInformations(" 16_F.A ", { TokenInformation(Token::FLOAT, StreamString("16_F.A", StreamPosition(1, 2))) });
+	ExpectTokenInformations(
+		" 16_F.A ", { TokenInformation(Token::FLOAT, StreamString("16_F.A", StreamPosition(1, 2))) });
 	ExpectTokenInformations(
 		";16_F.A;",
 		{ TokenInformation(Token::SEMICOLON, StreamString(";", StreamPosition())),
