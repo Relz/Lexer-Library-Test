@@ -54,7 +54,9 @@ ADD_EXECUTABLE(LexerTest
 	CharacterLiteralTokenTest.cpp
 	LineCommentTokenTest.cpp
 	BlockCommentTokenTest.cpp
-	BooleanLiteralTokenTest.cpp)
+	BooleanLiteralTokenTest.cpp
+	AndTokenTest.cpp
+	OrTokenTest.cpp)
 
 INCLUDE_DIRECTORIES(${CMAKE_SOURCE_DIR}/LexerLibrary)
 TARGET_LINK_LIBRARIES(LexerTest gtest gtest_main LexerLibrary)
