@@ -61,7 +61,8 @@ ADD_EXECUTABLE(LexerTest
 	WriteTokenTest.cpp
 	IntegerDivisionTokenTest.cpp
 	ModulusTokenTest.cpp
-	IntegerDivisionAssignmentTokenTest.cpp)
+	IntegerDivisionAssignmentTokenTest.cpp
+	ModulusAssignmentTokenTest.cpp)
 
 INCLUDE_DIRECTORIES(${CMAKE_SOURCE_DIR}/LexerLibrary)
 TARGET_LINK_LIBRARIES(LexerTest gtest gtest_main LexerLibrary)
