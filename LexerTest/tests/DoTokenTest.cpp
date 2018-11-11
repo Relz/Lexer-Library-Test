@@ -68,13 +68,13 @@ TEST(do_token, not_determining_if_part_of_string_literal)
 
 TEST(do_token, not_determining_if_part_of_comment)
 {
-	ExpectTokenInformations("//do", { TokenInformation(Token::LINE_COMMENT, StreamString("//do", StreamPosition())) });
+	ExpectTokenInformations("#do", { TokenInformation(Token::LINE_COMMENT, StreamString("#do", StreamPosition())) });
 	ExpectTokenInformations(
-		"// do ", { TokenInformation(Token::LINE_COMMENT, StreamString("// do ", StreamPosition())) });
+		"# do ", { TokenInformation(Token::LINE_COMMENT, StreamString("# do ", StreamPosition())) });
 	ExpectTokenInformations(
-		"//1do1", { TokenInformation(Token::LINE_COMMENT, StreamString("//1do1", StreamPosition())) });
+		"#1do1", { TokenInformation(Token::LINE_COMMENT, StreamString("#1do1", StreamPosition())) });
 	ExpectTokenInformations(
-		"//;do;", { TokenInformation(Token::LINE_COMMENT, StreamString("//;do;", StreamPosition())) });
+		"#;do;", { TokenInformation(Token::LINE_COMMENT, StreamString("#;do;", StreamPosition())) });
 	ExpectTokenInformations(
 		"/*do*/", { TokenInformation(Token::BLOCK_COMMENT, StreamString("/*do*/", StreamPosition())) });
 	ExpectTokenInformations(

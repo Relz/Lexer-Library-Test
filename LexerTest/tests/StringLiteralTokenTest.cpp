@@ -78,13 +78,13 @@ TEST(string_literal_token, determining_if_stay_between_numbers)
 TEST(string_literal_token, not_determining_if_part_of_comment)
 {
 	ExpectTokenInformations(
-		R"(//"")", { TokenInformation(Token::LINE_COMMENT, StreamString(R"(//"")", StreamPosition())) });
+		R"(#"")", { TokenInformation(Token::LINE_COMMENT, StreamString(R"(#"")", StreamPosition())) });
 	ExpectTokenInformations(
-		R"(// "" )", { TokenInformation(Token::LINE_COMMENT, StreamString(R"(// "" )", StreamPosition())) });
+		R"(# "" )", { TokenInformation(Token::LINE_COMMENT, StreamString(R"(# "" )", StreamPosition())) });
 	ExpectTokenInformations(
-		R"(//1""1)", { TokenInformation(Token::LINE_COMMENT, StreamString(R"(//1""1)", StreamPosition())) });
+		R"(#1""1)", { TokenInformation(Token::LINE_COMMENT, StreamString(R"(#1""1)", StreamPosition())) });
 	ExpectTokenInformations(
-		R"(//;"";)", { TokenInformation(Token::LINE_COMMENT, StreamString(R"(//;"";)", StreamPosition())) });
+		R"(#;"";)", { TokenInformation(Token::LINE_COMMENT, StreamString(R"(#;"";)", StreamPosition())) });
 	ExpectTokenInformations(
 		R"(/*""*/)", { TokenInformation(Token::BLOCK_COMMENT, StreamString(R"(/*""*/)", StreamPosition())) });
 	ExpectTokenInformations(

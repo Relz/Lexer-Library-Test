@@ -69,13 +69,13 @@ TEST(write_token, not_determining_if_part_of_string_literal)
 TEST(write_token, not_determining_if_part_of_comment)
 {
 	ExpectTokenInformations(
-		"//Write", { TokenInformation(Token::LINE_COMMENT, StreamString("//Write", StreamPosition())) });
+		"#Write", { TokenInformation(Token::LINE_COMMENT, StreamString("#Write", StreamPosition())) });
 	ExpectTokenInformations(
-		"// Write ", { TokenInformation(Token::LINE_COMMENT, StreamString("// Write ", StreamPosition())) });
+		"# Write ", { TokenInformation(Token::LINE_COMMENT, StreamString("# Write ", StreamPosition())) });
 	ExpectTokenInformations(
-		"//1Write1", { TokenInformation(Token::LINE_COMMENT, StreamString("//1Write1", StreamPosition())) });
+		"#1Write1", { TokenInformation(Token::LINE_COMMENT, StreamString("#1Write1", StreamPosition())) });
 	ExpectTokenInformations(
-		"//;Write;", { TokenInformation(Token::LINE_COMMENT, StreamString("//;Write;", StreamPosition())) });
+		"#;Write;", { TokenInformation(Token::LINE_COMMENT, StreamString("#;Write;", StreamPosition())) });
 	ExpectTokenInformations(
 		"/*Write*/", { TokenInformation(Token::BLOCK_COMMENT, StreamString("/*Write*/", StreamPosition())) });
 	ExpectTokenInformations(

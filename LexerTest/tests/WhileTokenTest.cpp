@@ -70,13 +70,13 @@ TEST(while_token, not_determining_if_part_of_string_literal)
 TEST(while_token, not_determining_if_part_of_comment)
 {
 	ExpectTokenInformations(
-		"//while", { TokenInformation(Token::LINE_COMMENT, StreamString("//while", StreamPosition())) });
+		"#while", { TokenInformation(Token::LINE_COMMENT, StreamString("#while", StreamPosition())) });
 	ExpectTokenInformations(
-		"// while ", { TokenInformation(Token::LINE_COMMENT, StreamString("// while ", StreamPosition())) });
+		"# while ", { TokenInformation(Token::LINE_COMMENT, StreamString("# while ", StreamPosition())) });
 	ExpectTokenInformations(
-		"//1while1", { TokenInformation(Token::LINE_COMMENT, StreamString("//1while1", StreamPosition())) });
+		"#1while1", { TokenInformation(Token::LINE_COMMENT, StreamString("#1while1", StreamPosition())) });
 	ExpectTokenInformations(
-		"//;while;", { TokenInformation(Token::LINE_COMMENT, StreamString("//;while;", StreamPosition())) });
+		"#;while;", { TokenInformation(Token::LINE_COMMENT, StreamString("#;while;", StreamPosition())) });
 	ExpectTokenInformations(
 		"/*while*/", { TokenInformation(Token::BLOCK_COMMENT, StreamString("/*while*/", StreamPosition())) });
 	ExpectTokenInformations(

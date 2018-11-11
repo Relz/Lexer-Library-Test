@@ -69,13 +69,13 @@ TEST(for_token, not_determining_if_part_of_string_literal)
 TEST(for_token, not_determining_if_part_of_comment)
 {
 	ExpectTokenInformations(
-		"//for", { TokenInformation(Token::LINE_COMMENT, StreamString("//for", StreamPosition())) });
+		"#for", { TokenInformation(Token::LINE_COMMENT, StreamString("#for", StreamPosition())) });
 	ExpectTokenInformations(
-		"// for ", { TokenInformation(Token::LINE_COMMENT, StreamString("// for ", StreamPosition())) });
+		"# for ", { TokenInformation(Token::LINE_COMMENT, StreamString("# for ", StreamPosition())) });
 	ExpectTokenInformations(
-		"//1for1", { TokenInformation(Token::LINE_COMMENT, StreamString("//1for1", StreamPosition())) });
+		"#1for1", { TokenInformation(Token::LINE_COMMENT, StreamString("#1for1", StreamPosition())) });
 	ExpectTokenInformations(
-		"//;for;", { TokenInformation(Token::LINE_COMMENT, StreamString("//;for;", StreamPosition())) });
+		"#;for;", { TokenInformation(Token::LINE_COMMENT, StreamString("#;for;", StreamPosition())) });
 	ExpectTokenInformations(
 		"/*for*/", { TokenInformation(Token::BLOCK_COMMENT, StreamString("/*for*/", StreamPosition())) });
 	ExpectTokenInformations(

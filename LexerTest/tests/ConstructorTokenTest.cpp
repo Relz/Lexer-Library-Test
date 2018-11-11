@@ -77,16 +77,16 @@ TEST(constructor_token, not_determining_if_part_of_string_literal)
 TEST(constructor_token, not_determining_if_part_of_comment)
 {
 	ExpectTokenInformations(
-		"//Constructor", { TokenInformation(Token::LINE_COMMENT, StreamString("//Constructor", StreamPosition())) });
+		"#Constructor", { TokenInformation(Token::LINE_COMMENT, StreamString("#Constructor", StreamPosition())) });
 	ExpectTokenInformations(
-		"// Constructor ",
-		{ TokenInformation(Token::LINE_COMMENT, StreamString("// Constructor ", StreamPosition())) });
+		"# Constructor ",
+		{ TokenInformation(Token::LINE_COMMENT, StreamString("# Constructor ", StreamPosition())) });
 	ExpectTokenInformations(
-		"//1Constructor1",
-		{ TokenInformation(Token::LINE_COMMENT, StreamString("//1Constructor1", StreamPosition())) });
+		"#1Constructor1",
+		{ TokenInformation(Token::LINE_COMMENT, StreamString("#1Constructor1", StreamPosition())) });
 	ExpectTokenInformations(
-		"//;Constructor;",
-		{ TokenInformation(Token::LINE_COMMENT, StreamString("//;Constructor;", StreamPosition())) });
+		"#;Constructor;",
+		{ TokenInformation(Token::LINE_COMMENT, StreamString("#;Constructor;", StreamPosition())) });
 	ExpectTokenInformations(
 		"/*Constructor*/",
 		{ TokenInformation(Token::BLOCK_COMMENT, StreamString("/*Constructor*/", StreamPosition())) });

@@ -69,13 +69,13 @@ TEST(set_token, not_determining_if_part_of_string_literal)
 TEST(set_token, not_determining_if_part_of_comment)
 {
 	ExpectTokenInformations(
-		"//set", { TokenInformation(Token::LINE_COMMENT, StreamString("//set", StreamPosition())) });
+		"#set", { TokenInformation(Token::LINE_COMMENT, StreamString("#set", StreamPosition())) });
 	ExpectTokenInformations(
-		"// set ", { TokenInformation(Token::LINE_COMMENT, StreamString("// set ", StreamPosition())) });
+		"# set ", { TokenInformation(Token::LINE_COMMENT, StreamString("# set ", StreamPosition())) });
 	ExpectTokenInformations(
-		"//1set1", { TokenInformation(Token::LINE_COMMENT, StreamString("//1set1", StreamPosition())) });
+		"#1set1", { TokenInformation(Token::LINE_COMMENT, StreamString("#1set1", StreamPosition())) });
 	ExpectTokenInformations(
-		"//;set;", { TokenInformation(Token::LINE_COMMENT, StreamString("//;set;", StreamPosition())) });
+		"#;set;", { TokenInformation(Token::LINE_COMMENT, StreamString("#;set;", StreamPosition())) });
 	ExpectTokenInformations(
 		"/*set*/", { TokenInformation(Token::BLOCK_COMMENT, StreamString("/*set*/", StreamPosition())) });
 	ExpectTokenInformations(

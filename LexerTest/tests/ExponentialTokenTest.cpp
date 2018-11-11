@@ -507,11 +507,11 @@ TEST(exponential_token, not_determining_if_part_of_string_literal)
 TEST(exponential_token, not_determining_if_part_of_comment)
 {
 	ExpectTokenInformations(
-		"//1_E+1", { TokenInformation(Token::LINE_COMMENT, StreamString("//1_E+1", StreamPosition())) });
+		"#1_E+1", { TokenInformation(Token::LINE_COMMENT, StreamString("#1_E+1", StreamPosition())) });
 	ExpectTokenInformations(
-		"// 1_E+1 ", { TokenInformation(Token::LINE_COMMENT, StreamString("// 1_E+1 ", StreamPosition())) });
+		"# 1_E+1 ", { TokenInformation(Token::LINE_COMMENT, StreamString("# 1_E+1 ", StreamPosition())) });
 	ExpectTokenInformations(
-		"//;1_E+1;", { TokenInformation(Token::LINE_COMMENT, StreamString("//;1_E+1;", StreamPosition())) });
+		"#;1_E+1;", { TokenInformation(Token::LINE_COMMENT, StreamString("#;1_E+1;", StreamPosition())) });
 	ExpectTokenInformations(
 		"/*1_E+1*/", { TokenInformation(Token::BLOCK_COMMENT, StreamString("/*1_E+1*/", StreamPosition())) });
 	ExpectTokenInformations(
@@ -530,11 +530,11 @@ TEST(exponential_token, not_determining_if_part_of_comment)
 		"/*;1_E+1;", { TokenInformation(Token::BLOCK_COMMENT, StreamString("/*;1_E+1;", StreamPosition())) });
 
 	ExpectTokenInformations(
-		"//2_1_E+1", { TokenInformation(Token::LINE_COMMENT, StreamString("//2_1_E+1", StreamPosition())) });
+		"#2_1_E+1", { TokenInformation(Token::LINE_COMMENT, StreamString("#2_1_E+1", StreamPosition())) });
 	ExpectTokenInformations(
-		"// 2_1_E+1 ", { TokenInformation(Token::LINE_COMMENT, StreamString("// 2_1_E+1 ", StreamPosition())) });
+		"# 2_1_E+1 ", { TokenInformation(Token::LINE_COMMENT, StreamString("# 2_1_E+1 ", StreamPosition())) });
 	ExpectTokenInformations(
-		"//;2_1_E+1;", { TokenInformation(Token::LINE_COMMENT, StreamString("//;2_1_E+1;", StreamPosition())) });
+		"#;2_1_E+1;", { TokenInformation(Token::LINE_COMMENT, StreamString("#;2_1_E+1;", StreamPosition())) });
 	ExpectTokenInformations(
 		"/*2_1_E+1*/", { TokenInformation(Token::BLOCK_COMMENT, StreamString("/*2_1_E+1*/", StreamPosition())) });
 	ExpectTokenInformations(
@@ -553,11 +553,11 @@ TEST(exponential_token, not_determining_if_part_of_comment)
 		"/*;2_1_E+1;", { TokenInformation(Token::BLOCK_COMMENT, StreamString("/*;2_1_E+1;", StreamPosition())) });
 
 	ExpectTokenInformations(
-		"//16_F_E+1", { TokenInformation(Token::LINE_COMMENT, StreamString("//16_F_E+1", StreamPosition())) });
+		"#16_F_E+1", { TokenInformation(Token::LINE_COMMENT, StreamString("#16_F_E+1", StreamPosition())) });
 	ExpectTokenInformations(
-		"// 16_F_E+1 ", { TokenInformation(Token::LINE_COMMENT, StreamString("// 16_F_E+1 ", StreamPosition())) });
+		"# 16_F_E+1 ", { TokenInformation(Token::LINE_COMMENT, StreamString("# 16_F_E+1 ", StreamPosition())) });
 	ExpectTokenInformations(
-		"//;16_F_E+1;", { TokenInformation(Token::LINE_COMMENT, StreamString("//;16_F_E+1;", StreamPosition())) });
+		"#;16_F_E+1;", { TokenInformation(Token::LINE_COMMENT, StreamString("#;16_F_E+1;", StreamPosition())) });
 	ExpectTokenInformations(
 		"/*16_F_E+1*/", { TokenInformation(Token::BLOCK_COMMENT, StreamString("/*16_F_E+1*/", StreamPosition())) });
 	ExpectTokenInformations(
@@ -576,11 +576,11 @@ TEST(exponential_token, not_determining_if_part_of_comment)
 		"/*;16_F_E+1;", { TokenInformation(Token::BLOCK_COMMENT, StreamString("/*;16_F_E+1;", StreamPosition())) });
 
 	ExpectTokenInformations(
-		"//1.1_E+1", { TokenInformation(Token::LINE_COMMENT, StreamString("//1.1_E+1", StreamPosition())) });
+		"#1.1_E+1", { TokenInformation(Token::LINE_COMMENT, StreamString("#1.1_E+1", StreamPosition())) });
 	ExpectTokenInformations(
-		"// 1.1_E+1 ", { TokenInformation(Token::LINE_COMMENT, StreamString("// 1.1_E+1 ", StreamPosition())) });
+		"# 1.1_E+1 ", { TokenInformation(Token::LINE_COMMENT, StreamString("# 1.1_E+1 ", StreamPosition())) });
 	ExpectTokenInformations(
-		"//;1.1_E+1;", { TokenInformation(Token::LINE_COMMENT, StreamString("//;1.1_E+1;", StreamPosition())) });
+		"#;1.1_E+1;", { TokenInformation(Token::LINE_COMMENT, StreamString("#;1.1_E+1;", StreamPosition())) });
 	ExpectTokenInformations(
 		"/*1.1_E+1*/", { TokenInformation(Token::BLOCK_COMMENT, StreamString("/*1.1_E+1*/", StreamPosition())) });
 	ExpectTokenInformations(
@@ -599,11 +599,11 @@ TEST(exponential_token, not_determining_if_part_of_comment)
 		"/*;1.1_E+1;", { TokenInformation(Token::BLOCK_COMMENT, StreamString("/*;1.1_E+1;", StreamPosition())) });
 
 	ExpectTokenInformations(
-		"//2_1.1_E+1", { TokenInformation(Token::LINE_COMMENT, StreamString("//2_1.1_E+1", StreamPosition())) });
+		"#2_1.1_E+1", { TokenInformation(Token::LINE_COMMENT, StreamString("#2_1.1_E+1", StreamPosition())) });
 	ExpectTokenInformations(
-		"// 2_1.1_E+1 ", { TokenInformation(Token::LINE_COMMENT, StreamString("// 2_1.1_E+1 ", StreamPosition())) });
+		"# 2_1.1_E+1 ", { TokenInformation(Token::LINE_COMMENT, StreamString("# 2_1.1_E+1 ", StreamPosition())) });
 	ExpectTokenInformations(
-		"//;2_1.1_E+1;", { TokenInformation(Token::LINE_COMMENT, StreamString("//;2_1.1_E+1;", StreamPosition())) });
+		"#;2_1.1_E+1;", { TokenInformation(Token::LINE_COMMENT, StreamString("#;2_1.1_E+1;", StreamPosition())) });
 	ExpectTokenInformations(
 		"/*2_1.1_E+1*/", { TokenInformation(Token::BLOCK_COMMENT, StreamString("/*2_1.1_E+1*/", StreamPosition())) });
 	ExpectTokenInformations(
@@ -624,11 +624,11 @@ TEST(exponential_token, not_determining_if_part_of_comment)
 		"/*;2_1.1_E+1;", { TokenInformation(Token::BLOCK_COMMENT, StreamString("/*;2_1.1_E+1;", StreamPosition())) });
 
 	ExpectTokenInformations(
-		"//16_F.A_E+1", { TokenInformation(Token::LINE_COMMENT, StreamString("//16_F.A_E+1", StreamPosition())) });
+		"#16_F.A_E+1", { TokenInformation(Token::LINE_COMMENT, StreamString("#16_F.A_E+1", StreamPosition())) });
 	ExpectTokenInformations(
-		"// 16_F.A_E+1 ", { TokenInformation(Token::LINE_COMMENT, StreamString("// 16_F.A_E+1 ", StreamPosition())) });
+		"# 16_F.A_E+1 ", { TokenInformation(Token::LINE_COMMENT, StreamString("# 16_F.A_E+1 ", StreamPosition())) });
 	ExpectTokenInformations(
-		"//;16_F.A_E+1;", { TokenInformation(Token::LINE_COMMENT, StreamString("//;16_F.A_E+1;", StreamPosition())) });
+		"#;16_F.A_E+1;", { TokenInformation(Token::LINE_COMMENT, StreamString("#;16_F.A_E+1;", StreamPosition())) });
 	ExpectTokenInformations(
 		"/*16_F.A_E+1*/", { TokenInformation(Token::BLOCK_COMMENT, StreamString("/*16_F.A_E+1*/", StreamPosition())) });
 	ExpectTokenInformations(

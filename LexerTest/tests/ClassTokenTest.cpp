@@ -70,13 +70,13 @@ TEST(class_token, not_determining_if_part_of_string_literal)
 TEST(class_token, not_determining_if_part_of_comment)
 {
 	ExpectTokenInformations(
-		"//class", { TokenInformation(Token::LINE_COMMENT, StreamString("//class", StreamPosition())) });
+		"#class", { TokenInformation(Token::LINE_COMMENT, StreamString("#class", StreamPosition())) });
 	ExpectTokenInformations(
-		"// class ", { TokenInformation(Token::LINE_COMMENT, StreamString("// class ", StreamPosition())) });
+		"# class ", { TokenInformation(Token::LINE_COMMENT, StreamString("# class ", StreamPosition())) });
 	ExpectTokenInformations(
-		"//1class1", { TokenInformation(Token::LINE_COMMENT, StreamString("//1class1", StreamPosition())) });
+		"#1class1", { TokenInformation(Token::LINE_COMMENT, StreamString("#1class1", StreamPosition())) });
 	ExpectTokenInformations(
-		"//;class;", { TokenInformation(Token::LINE_COMMENT, StreamString("//;class;", StreamPosition())) });
+		"#;class;", { TokenInformation(Token::LINE_COMMENT, StreamString("#;class;", StreamPosition())) });
 	ExpectTokenInformations(
 		"/*class*/", { TokenInformation(Token::BLOCK_COMMENT, StreamString("/*class*/", StreamPosition())) });
 	ExpectTokenInformations(

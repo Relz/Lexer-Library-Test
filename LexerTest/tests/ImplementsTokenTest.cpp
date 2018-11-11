@@ -77,13 +77,13 @@ TEST(implements_token, not_determining_if_part_of_string_literal)
 TEST(implements_token, not_determining_if_part_of_comment)
 {
 	ExpectTokenInformations(
-		"//implements", { TokenInformation(Token::LINE_COMMENT, StreamString("//implements", StreamPosition())) });
+		"#implements", { TokenInformation(Token::LINE_COMMENT, StreamString("#implements", StreamPosition())) });
 	ExpectTokenInformations(
-		"// implements ", { TokenInformation(Token::LINE_COMMENT, StreamString("// implements ", StreamPosition())) });
+		"# implements ", { TokenInformation(Token::LINE_COMMENT, StreamString("# implements ", StreamPosition())) });
 	ExpectTokenInformations(
-		"//1implements1", { TokenInformation(Token::LINE_COMMENT, StreamString("//1implements1", StreamPosition())) });
+		"#1implements1", { TokenInformation(Token::LINE_COMMENT, StreamString("#1implements1", StreamPosition())) });
 	ExpectTokenInformations(
-		"//;implements;", { TokenInformation(Token::LINE_COMMENT, StreamString("//;implements;", StreamPosition())) });
+		"#;implements;", { TokenInformation(Token::LINE_COMMENT, StreamString("#;implements;", StreamPosition())) });
 	ExpectTokenInformations(
 		"/*implements*/", { TokenInformation(Token::BLOCK_COMMENT, StreamString("/*implements*/", StreamPosition())) });
 	ExpectTokenInformations(

@@ -68,13 +68,13 @@ TEST(if_token, not_determining_if_part_of_string_literal)
 
 TEST(if_token, not_determining_if_part_of_comment)
 {
-	ExpectTokenInformations("//if", { TokenInformation(Token::LINE_COMMENT, StreamString("//if", StreamPosition())) });
+	ExpectTokenInformations("#if", { TokenInformation(Token::LINE_COMMENT, StreamString("#if", StreamPosition())) });
 	ExpectTokenInformations(
-		"// if ", { TokenInformation(Token::LINE_COMMENT, StreamString("// if ", StreamPosition())) });
+		"# if ", { TokenInformation(Token::LINE_COMMENT, StreamString("# if ", StreamPosition())) });
 	ExpectTokenInformations(
-		"//1if1", { TokenInformation(Token::LINE_COMMENT, StreamString("//1if1", StreamPosition())) });
+		"#1if1", { TokenInformation(Token::LINE_COMMENT, StreamString("#1if1", StreamPosition())) });
 	ExpectTokenInformations(
-		"//;if;", { TokenInformation(Token::LINE_COMMENT, StreamString("//;if;", StreamPosition())) });
+		"#;if;", { TokenInformation(Token::LINE_COMMENT, StreamString("#;if;", StreamPosition())) });
 	ExpectTokenInformations(
 		"/*if*/", { TokenInformation(Token::BLOCK_COMMENT, StreamString("/*if*/", StreamPosition())) });
 	ExpectTokenInformations(

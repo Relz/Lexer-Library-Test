@@ -69,13 +69,13 @@ TEST(read_token, not_determining_if_part_of_string_literal)
 TEST(read_token, not_determining_if_part_of_comment)
 {
 	ExpectTokenInformations(
-		"//Read", { TokenInformation(Token::LINE_COMMENT, StreamString("//Read", StreamPosition())) });
+		"#Read", { TokenInformation(Token::LINE_COMMENT, StreamString("#Read", StreamPosition())) });
 	ExpectTokenInformations(
-		"// Read ", { TokenInformation(Token::LINE_COMMENT, StreamString("// Read ", StreamPosition())) });
+		"# Read ", { TokenInformation(Token::LINE_COMMENT, StreamString("# Read ", StreamPosition())) });
 	ExpectTokenInformations(
-		"//1Read1", { TokenInformation(Token::LINE_COMMENT, StreamString("//1Read1", StreamPosition())) });
+		"#1Read1", { TokenInformation(Token::LINE_COMMENT, StreamString("#1Read1", StreamPosition())) });
 	ExpectTokenInformations(
-		"//;Read;", { TokenInformation(Token::LINE_COMMENT, StreamString("//;Read;", StreamPosition())) });
+		"#;Read;", { TokenInformation(Token::LINE_COMMENT, StreamString("#;Read;", StreamPosition())) });
 	ExpectTokenInformations(
 		"/*Read*/", { TokenInformation(Token::BLOCK_COMMENT, StreamString("/*Read*/", StreamPosition())) });
 	ExpectTokenInformations(

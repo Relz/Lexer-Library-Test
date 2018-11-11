@@ -72,13 +72,13 @@ TEST(not_initialized_token, not_determining_if_part_of_string_literal)
 TEST(not_initialized_token, not_determining_if_part_of_comment)
 {
 	ExpectTokenInformations(
-		"//NULL", { TokenInformation(Token::LINE_COMMENT, StreamString("//NULL", StreamPosition())) });
+		"#NULL", { TokenInformation(Token::LINE_COMMENT, StreamString("#NULL", StreamPosition())) });
 	ExpectTokenInformations(
-		"// NULL ", { TokenInformation(Token::LINE_COMMENT, StreamString("// NULL ", StreamPosition())) });
+		"# NULL ", { TokenInformation(Token::LINE_COMMENT, StreamString("# NULL ", StreamPosition())) });
 	ExpectTokenInformations(
-		"//1NULL1", { TokenInformation(Token::LINE_COMMENT, StreamString("//1NULL1", StreamPosition())) });
+		"#1NULL1", { TokenInformation(Token::LINE_COMMENT, StreamString("#1NULL1", StreamPosition())) });
 	ExpectTokenInformations(
-		"//;NULL;", { TokenInformation(Token::LINE_COMMENT, StreamString("//;NULL;", StreamPosition())) });
+		"#;NULL;", { TokenInformation(Token::LINE_COMMENT, StreamString("#;NULL;", StreamPosition())) });
 	ExpectTokenInformations(
 		"/*NULL*/", { TokenInformation(Token::BLOCK_COMMENT, StreamString("/*NULL*/", StreamPosition())) });
 	ExpectTokenInformations(

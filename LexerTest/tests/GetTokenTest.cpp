@@ -69,13 +69,13 @@ TEST(get_token, not_determining_if_part_of_string_literal)
 TEST(get_token, not_determining_if_part_of_comment)
 {
 	ExpectTokenInformations(
-		"//get", { TokenInformation(Token::LINE_COMMENT, StreamString("//get", StreamPosition())) });
+		"#get", { TokenInformation(Token::LINE_COMMENT, StreamString("#get", StreamPosition())) });
 	ExpectTokenInformations(
-		"// get ", { TokenInformation(Token::LINE_COMMENT, StreamString("// get ", StreamPosition())) });
+		"# get ", { TokenInformation(Token::LINE_COMMENT, StreamString("# get ", StreamPosition())) });
 	ExpectTokenInformations(
-		"//1get1", { TokenInformation(Token::LINE_COMMENT, StreamString("//1get1", StreamPosition())) });
+		"#1get1", { TokenInformation(Token::LINE_COMMENT, StreamString("#1get1", StreamPosition())) });
 	ExpectTokenInformations(
-		"//;get;", { TokenInformation(Token::LINE_COMMENT, StreamString("//;get;", StreamPosition())) });
+		"#;get;", { TokenInformation(Token::LINE_COMMENT, StreamString("#;get;", StreamPosition())) });
 	ExpectTokenInformations(
 		"/*get*/", { TokenInformation(Token::BLOCK_COMMENT, StreamString("/*get*/", StreamPosition())) });
 	ExpectTokenInformations(

@@ -75,13 +75,13 @@ TEST(private_token, not_determining_if_part_of_string_literal)
 TEST(private_token, not_determining_if_part_of_comment)
 {
 	ExpectTokenInformations(
-		"//private", { TokenInformation(Token::LINE_COMMENT, StreamString("//private", StreamPosition())) });
+		"#private", { TokenInformation(Token::LINE_COMMENT, StreamString("#private", StreamPosition())) });
 	ExpectTokenInformations(
-		"// private ", { TokenInformation(Token::LINE_COMMENT, StreamString("// private ", StreamPosition())) });
+		"# private ", { TokenInformation(Token::LINE_COMMENT, StreamString("# private ", StreamPosition())) });
 	ExpectTokenInformations(
-		"//1private1", { TokenInformation(Token::LINE_COMMENT, StreamString("//1private1", StreamPosition())) });
+		"#1private1", { TokenInformation(Token::LINE_COMMENT, StreamString("#1private1", StreamPosition())) });
 	ExpectTokenInformations(
-		"//;private;", { TokenInformation(Token::LINE_COMMENT, StreamString("//;private;", StreamPosition())) });
+		"#;private;", { TokenInformation(Token::LINE_COMMENT, StreamString("#;private;", StreamPosition())) });
 	ExpectTokenInformations(
 		"/*private*/", { TokenInformation(Token::BLOCK_COMMENT, StreamString("/*private*/", StreamPosition())) });
 	ExpectTokenInformations(

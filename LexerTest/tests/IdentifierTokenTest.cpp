@@ -74,13 +74,13 @@ TEST(identifier_token, not_determining_if_part_of_string_literal)
 
 TEST(identifier_token, not_determining_if_part_of_comment)
 {
-	ExpectTokenInformations("//id", { TokenInformation(Token::LINE_COMMENT, StreamString("//id", StreamPosition())) });
+	ExpectTokenInformations("#id", { TokenInformation(Token::LINE_COMMENT, StreamString("#id", StreamPosition())) });
 	ExpectTokenInformations(
-		"// id ", { TokenInformation(Token::LINE_COMMENT, StreamString("// id ", StreamPosition())) });
+		"# id ", { TokenInformation(Token::LINE_COMMENT, StreamString("# id ", StreamPosition())) });
 	ExpectTokenInformations(
-		"//1id1", { TokenInformation(Token::LINE_COMMENT, StreamString("//1id1", StreamPosition())) });
+		"#1id1", { TokenInformation(Token::LINE_COMMENT, StreamString("#1id1", StreamPosition())) });
 	ExpectTokenInformations(
-		"//;id;", { TokenInformation(Token::LINE_COMMENT, StreamString("//;id;", StreamPosition())) });
+		"#;id;", { TokenInformation(Token::LINE_COMMENT, StreamString("#;id;", StreamPosition())) });
 	ExpectTokenInformations(
 		"/*id*/", { TokenInformation(Token::BLOCK_COMMENT, StreamString("/*id*/", StreamPosition())) });
 	ExpectTokenInformations(

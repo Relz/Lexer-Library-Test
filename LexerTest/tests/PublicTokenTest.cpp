@@ -72,13 +72,13 @@ TEST(public_token, not_determining_if_part_of_string_literal)
 TEST(public_token, not_determining_if_part_of_comment)
 {
 	ExpectTokenInformations(
-		"//public", { TokenInformation(Token::LINE_COMMENT, StreamString("//public", StreamPosition())) });
+		"#public", { TokenInformation(Token::LINE_COMMENT, StreamString("#public", StreamPosition())) });
 	ExpectTokenInformations(
-		"// public ", { TokenInformation(Token::LINE_COMMENT, StreamString("// public ", StreamPosition())) });
+		"# public ", { TokenInformation(Token::LINE_COMMENT, StreamString("# public ", StreamPosition())) });
 	ExpectTokenInformations(
-		"//1public1", { TokenInformation(Token::LINE_COMMENT, StreamString("//1public1", StreamPosition())) });
+		"#1public1", { TokenInformation(Token::LINE_COMMENT, StreamString("#1public1", StreamPosition())) });
 	ExpectTokenInformations(
-		"//;public;", { TokenInformation(Token::LINE_COMMENT, StreamString("//;public;", StreamPosition())) });
+		"#;public;", { TokenInformation(Token::LINE_COMMENT, StreamString("#;public;", StreamPosition())) });
 	ExpectTokenInformations(
 		"/*public*/", { TokenInformation(Token::BLOCK_COMMENT, StreamString("/*public*/", StreamPosition())) });
 	ExpectTokenInformations(

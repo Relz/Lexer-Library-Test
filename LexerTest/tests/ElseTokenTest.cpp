@@ -70,13 +70,13 @@ TEST(else_token, not_determining_if_part_of_string_literal)
 TEST(else_token, not_determining_if_part_of_comment)
 {
 	ExpectTokenInformations(
-		"//else", { TokenInformation(Token::LINE_COMMENT, StreamString("//else", StreamPosition())) });
+		"#else", { TokenInformation(Token::LINE_COMMENT, StreamString("#else", StreamPosition())) });
 	ExpectTokenInformations(
-		"// else ", { TokenInformation(Token::LINE_COMMENT, StreamString("// else ", StreamPosition())) });
+		"# else ", { TokenInformation(Token::LINE_COMMENT, StreamString("# else ", StreamPosition())) });
 	ExpectTokenInformations(
-		"//1else1", { TokenInformation(Token::LINE_COMMENT, StreamString("//1else1", StreamPosition())) });
+		"#1else1", { TokenInformation(Token::LINE_COMMENT, StreamString("#1else1", StreamPosition())) });
 	ExpectTokenInformations(
-		"//;else;", { TokenInformation(Token::LINE_COMMENT, StreamString("//;else;", StreamPosition())) });
+		"#;else;", { TokenInformation(Token::LINE_COMMENT, StreamString("#;else;", StreamPosition())) });
 	ExpectTokenInformations(
 		"/*else*/", { TokenInformation(Token::BLOCK_COMMENT, StreamString("/*else*/", StreamPosition())) });
 	ExpectTokenInformations(

@@ -81,13 +81,13 @@ TEST(less_or_equivalence_token, not_determining_if_part_of_string_literal)
 
 TEST(less_or_equivalence_token, not_determining_if_part_of_comment)
 {
-	ExpectTokenInformations("//<=", { TokenInformation(Token::LINE_COMMENT, StreamString("//<=", StreamPosition())) });
+	ExpectTokenInformations("#<=", { TokenInformation(Token::LINE_COMMENT, StreamString("#<=", StreamPosition())) });
 	ExpectTokenInformations(
-		"// <= ", { TokenInformation(Token::LINE_COMMENT, StreamString("// <= ", StreamPosition())) });
+		"# <= ", { TokenInformation(Token::LINE_COMMENT, StreamString("# <= ", StreamPosition())) });
 	ExpectTokenInformations(
-		"//1<=1", { TokenInformation(Token::LINE_COMMENT, StreamString("//1<=1", StreamPosition())) });
+		"#1<=1", { TokenInformation(Token::LINE_COMMENT, StreamString("#1<=1", StreamPosition())) });
 	ExpectTokenInformations(
-		"//;<=;", { TokenInformation(Token::LINE_COMMENT, StreamString("//;<=;", StreamPosition())) });
+		"#;<=;", { TokenInformation(Token::LINE_COMMENT, StreamString("#;<=;", StreamPosition())) });
 	ExpectTokenInformations(
 		"/*<=*/", { TokenInformation(Token::BLOCK_COMMENT, StreamString("/*<=*/", StreamPosition())) });
 	ExpectTokenInformations(

@@ -75,13 +75,13 @@ TEST(extends_token, not_determining_if_part_of_string_literal)
 TEST(extends_token, not_determining_if_part_of_comment)
 {
 	ExpectTokenInformations(
-		"//extends", { TokenInformation(Token::LINE_COMMENT, StreamString("//extends", StreamPosition())) });
+		"#extends", { TokenInformation(Token::LINE_COMMENT, StreamString("#extends", StreamPosition())) });
 	ExpectTokenInformations(
-		"// extends ", { TokenInformation(Token::LINE_COMMENT, StreamString("// extends ", StreamPosition())) });
+		"# extends ", { TokenInformation(Token::LINE_COMMENT, StreamString("# extends ", StreamPosition())) });
 	ExpectTokenInformations(
-		"//1extends1", { TokenInformation(Token::LINE_COMMENT, StreamString("//1extends1", StreamPosition())) });
+		"#1extends1", { TokenInformation(Token::LINE_COMMENT, StreamString("#1extends1", StreamPosition())) });
 	ExpectTokenInformations(
-		"//;extends;", { TokenInformation(Token::LINE_COMMENT, StreamString("//;extends;", StreamPosition())) });
+		"#;extends;", { TokenInformation(Token::LINE_COMMENT, StreamString("#;extends;", StreamPosition())) });
 	ExpectTokenInformations(
 		"/*extends*/", { TokenInformation(Token::BLOCK_COMMENT, StreamString("/*extends*/", StreamPosition())) });
 	ExpectTokenInformations(

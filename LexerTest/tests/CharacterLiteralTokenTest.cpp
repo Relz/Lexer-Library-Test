@@ -82,13 +82,13 @@ TEST(character_literal_token, not_determining_if_has_length_not_equal_to_one)
 TEST(character_literal_token, not_determining_if_part_of_comment)
 {
 	ExpectTokenInformations(
-		"//'1'", { TokenInformation(Token::LINE_COMMENT, StreamString("//'1'", StreamPosition())) });
+		"#'1'", { TokenInformation(Token::LINE_COMMENT, StreamString("#'1'", StreamPosition())) });
 	ExpectTokenInformations(
-		"// '1' ", { TokenInformation(Token::LINE_COMMENT, StreamString("// '1' ", StreamPosition())) });
+		"# '1' ", { TokenInformation(Token::LINE_COMMENT, StreamString("# '1' ", StreamPosition())) });
 	ExpectTokenInformations(
-		"//1'1'1", { TokenInformation(Token::LINE_COMMENT, StreamString("//1'1'1", StreamPosition())) });
+		"#1'1'1", { TokenInformation(Token::LINE_COMMENT, StreamString("#1'1'1", StreamPosition())) });
 	ExpectTokenInformations(
-		"//;'1';", { TokenInformation(Token::LINE_COMMENT, StreamString("//;'1';", StreamPosition())) });
+		"#;'1';", { TokenInformation(Token::LINE_COMMENT, StreamString("#;'1';", StreamPosition())) });
 	ExpectTokenInformations(
 		"/*'1'*/", { TokenInformation(Token::BLOCK_COMMENT, StreamString("/*'1'*/", StreamPosition())) });
 	ExpectTokenInformations(

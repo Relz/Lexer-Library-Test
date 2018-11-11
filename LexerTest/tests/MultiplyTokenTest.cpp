@@ -65,7 +65,7 @@ TEST(multiply_token, determining_if_stay_between_numbers)
 		  TokenInformation(Token::EXPONENTIAL, StreamString("1_E+1", StreamPosition(1, 3))) });
 }
 
-TEST(multiply_token, not_determining_if_part_of_plus_assignment)
+TEST(multiply_token, not_determining_if_part_of_multiply_assignment)
 {
 	ExpectTokenInformations(
 		"*=", { TokenInformation(Token::MULTIPLY_ASSIGNMENT, StreamString("*=", StreamPosition())) });
@@ -101,15 +101,15 @@ TEST(multiply_token, not_determining_if_part_of_string_literal)
 
 TEST(multiply_token, not_determining_if_part_of_comment)
 {
-	ExpectTokenInformations("//*", { TokenInformation(Token::LINE_COMMENT, StreamString("//*", StreamPosition())) });
+	ExpectTokenInformations("#*", { TokenInformation(Token::LINE_COMMENT, StreamString("#*", StreamPosition())) });
 	ExpectTokenInformations(
-		"// * ", { TokenInformation(Token::LINE_COMMENT, StreamString("// * ", StreamPosition())) });
+		"# * ", { TokenInformation(Token::LINE_COMMENT, StreamString("# * ", StreamPosition())) });
 	ExpectTokenInformations(
-		"//1*1", { TokenInformation(Token::LINE_COMMENT, StreamString("//1*1", StreamPosition())) });
+		"#1*1", { TokenInformation(Token::LINE_COMMENT, StreamString("#1*1", StreamPosition())) });
 	ExpectTokenInformations(
-		"//;*;", { TokenInformation(Token::LINE_COMMENT, StreamString("//;*;", StreamPosition())) });
+		"#;*;", { TokenInformation(Token::LINE_COMMENT, StreamString("#;*;", StreamPosition())) });
 	ExpectTokenInformations(
-		"//***", { TokenInformation(Token::LINE_COMMENT, StreamString("//***", StreamPosition())) });
+		"#***", { TokenInformation(Token::LINE_COMMENT, StreamString("#***", StreamPosition())) });
 	ExpectTokenInformations(
 		"/***/", { TokenInformation(Token::BLOCK_COMMENT, StreamString("/***/", StreamPosition())) });
 	ExpectTokenInformations(

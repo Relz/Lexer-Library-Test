@@ -72,13 +72,13 @@ TEST(return_token, not_determining_if_part_of_string_literal)
 TEST(return_token, not_determining_if_part_of_comment)
 {
 	ExpectTokenInformations(
-		"//return", { TokenInformation(Token::LINE_COMMENT, StreamString("//return", StreamPosition())) });
+		"#return", { TokenInformation(Token::LINE_COMMENT, StreamString("#return", StreamPosition())) });
 	ExpectTokenInformations(
-		"// return ", { TokenInformation(Token::LINE_COMMENT, StreamString("// return ", StreamPosition())) });
+		"# return ", { TokenInformation(Token::LINE_COMMENT, StreamString("# return ", StreamPosition())) });
 	ExpectTokenInformations(
-		"//1return1", { TokenInformation(Token::LINE_COMMENT, StreamString("//1return1", StreamPosition())) });
+		"#1return1", { TokenInformation(Token::LINE_COMMENT, StreamString("#1return1", StreamPosition())) });
 	ExpectTokenInformations(
-		"//;return;", { TokenInformation(Token::LINE_COMMENT, StreamString("//;return;", StreamPosition())) });
+		"#;return;", { TokenInformation(Token::LINE_COMMENT, StreamString("#;return;", StreamPosition())) });
 	ExpectTokenInformations(
 		"/*return*/", { TokenInformation(Token::BLOCK_COMMENT, StreamString("/*return*/", StreamPosition())) });
 	ExpectTokenInformations(

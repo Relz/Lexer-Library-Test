@@ -67,17 +67,16 @@ TEST(boolean_literal_token, not_determining_if_stay_between_numbers)
 		  TokenInformation(Token::INTEGER, StreamString("1", StreamPosition(1, 10))) });
 }
 
-
 TEST(boolean_literal_token, not_determining_if_part_of_comment)
 {
 	ExpectTokenInformations(
-		"//True", { TokenInformation(Token::LINE_COMMENT, StreamString("//True", StreamPosition())) });
+		"#True", { TokenInformation(Token::LINE_COMMENT, StreamString("#True", StreamPosition())) });
 	ExpectTokenInformations(
-		"// True ", { TokenInformation(Token::LINE_COMMENT, StreamString("// True ", StreamPosition())) });
+		"# True ", { TokenInformation(Token::LINE_COMMENT, StreamString("# True ", StreamPosition())) });
 	ExpectTokenInformations(
-		"//1True1", { TokenInformation(Token::LINE_COMMENT, StreamString("//1True1", StreamPosition())) });
+		"#1True1", { TokenInformation(Token::LINE_COMMENT, StreamString("#1True1", StreamPosition())) });
 	ExpectTokenInformations(
-		"//;True;", { TokenInformation(Token::LINE_COMMENT, StreamString("//;True;", StreamPosition())) });
+		"#;True;", { TokenInformation(Token::LINE_COMMENT, StreamString("#;True;", StreamPosition())) });
 	ExpectTokenInformations(
 		"/*True*/", { TokenInformation(Token::BLOCK_COMMENT, StreamString("/*True*/", StreamPosition())) });
 	ExpectTokenInformations(

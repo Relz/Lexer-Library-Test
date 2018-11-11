@@ -73,13 +73,13 @@ TEST(block_comment_token, not_determining_if_part_of_string_literal)
 
 TEST(block_comment_token, not_determining_if_part_of_comment)
 {
-	ExpectTokenInformations("///*", { TokenInformation(Token::LINE_COMMENT, StreamString("///*", StreamPosition())) });
+	ExpectTokenInformations("#/*", { TokenInformation(Token::LINE_COMMENT, StreamString("#/*", StreamPosition())) });
 	ExpectTokenInformations(
-		"// /* ", { TokenInformation(Token::LINE_COMMENT, StreamString("// /* ", StreamPosition())) });
+		"# /* ", { TokenInformation(Token::LINE_COMMENT, StreamString("# /* ", StreamPosition())) });
 	ExpectTokenInformations(
-		"//1/*1", { TokenInformation(Token::LINE_COMMENT, StreamString("//1/*1", StreamPosition())) });
+		"#1/*1", { TokenInformation(Token::LINE_COMMENT, StreamString("#1/*1", StreamPosition())) });
 	ExpectTokenInformations(
-		"//;/*;", { TokenInformation(Token::LINE_COMMENT, StreamString("//;/*;", StreamPosition())) });
+		"#;/*;", { TokenInformation(Token::LINE_COMMENT, StreamString("#;/*;", StreamPosition())) });
 	ExpectTokenInformations(
 		"/*/**/", { TokenInformation(Token::BLOCK_COMMENT, StreamString("/*/**/", StreamPosition())) });
 	ExpectTokenInformations(
@@ -100,19 +100,19 @@ TEST(block_comment_token, not_determining_if_part_of_comment)
 TEST(block_comment_token, does_not_end_with_end_of_line)
 {
 	ExpectTokenInformations(
-		"/* comment\nidentifier // long comment",
+		"/* comment\nidentifier # long comment",
 		{ TokenInformation(
-			Token::BLOCK_COMMENT, StreamString("/* comment\nidentifier // long comment", StreamPosition())) });
+			Token::BLOCK_COMMENT, StreamString("/* comment\nidentifier # long comment", StreamPosition())) });
 	ExpectTokenInformations(
-		"/* comment\nidentifier // long comment*/",
+		"/* comment\nidentifier # long comment*/",
 		{ TokenInformation(
-			Token::BLOCK_COMMENT, StreamString("/* comment\nidentifier // long comment*/", StreamPosition())) });
+			Token::BLOCK_COMMENT, StreamString("/* comment\nidentifier # long comment*/", StreamPosition())) });
 	ExpectTokenInformations(
-		"/* comment\nidentifier // long comment\n\t*/",
+		"/* comment\nidentifier # long comment\n\t*/",
 		{ TokenInformation(
-			Token::BLOCK_COMMENT, StreamString("/* comment\nidentifier // long comment\n\t*/", StreamPosition())) });
+			Token::BLOCK_COMMENT, StreamString("/* comment\nidentifier # long comment\n\t*/", StreamPosition())) });
 	ExpectTokenInformations(
-		"/*comment\nidentifier // long comment*/",
+		"/*comment\nidentifier # long comment*/",
 		{ TokenInformation(
-			Token::BLOCK_COMMENT, StreamString("/*comment\nidentifier // long comment*/", StreamPosition())) });
+			Token::BLOCK_COMMENT, StreamString("/*comment\nidentifier # long comment*/", StreamPosition())) });
 }
